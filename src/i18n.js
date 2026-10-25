@@ -1,18 +1,21 @@
 // Language is driven by the URL path: / = English, /vi/ = Vietnamese.
 // Two real HTML entries means each language gets its own indexable head
 // (title, description, OG, lang attribute) instead of a client-side swap.
-export const LANG = window.location.pathname.startsWith('/vi') ? 'vi' : 'en';
+export const LANG = (typeof window === 'undefined' ? '/' : window.location.pathname).startsWith('/vi') ? 'vi' : 'en';
 export const isVi = LANG === 'vi';
 
 /** English copy — natural, conversational tone */
-const dictEn = {
+export const dictEn = {
   nav: {
     about: 'About',
     projects: 'Open Source',
     apps: 'Apps',
     stack: 'Stack',
     contact: 'Get in touch',
+    aria: 'Main navigation',
   },
+  theme: { toggle: 'Switch theme' },
+  stack: { aria: 'Technology stack' },
   hero: {
     eyebrow: 'Available for new projects',
     greeting: 'Hi, I’m Derek Nguyen.',
@@ -21,6 +24,7 @@ const dictEn = {
     desc: 'Software engineer in Ho Chi Minh City. I make AI-assisted engineering tools, write the best-practice guides other devs actually read, and set up dev environments that stay out of the way.',
     viewProjects: 'View projects',
     contactMe: 'Contact me',
+    terminalAria: 'System status console',
   },
   about: {
     eyebrow: 'Background',
@@ -62,21 +66,26 @@ const dictEn = {
 };
 
 /** Vietnamese copy — written the way a Vietnamese dev actually talks */
-const dictVi = {
+export const dictVi = {
   nav: {
     about: 'Giới thiệu',
     projects: 'Mã nguồn mở',
     apps: 'Ứng dụng',
     stack: 'Công nghệ',
     contact: 'Kết nối',
+    aria: 'Điều hướng chính',
   },
+  theme: { toggle: 'Đổi giao diện' },
+  stack: { aria: 'Công nghệ đang dùng' },
   hero: {
     eyebrow: 'Đang nhận dự án mới',
     greeting: 'Chào, mình là Derek Nguyễn.',
+    name: 'Derek Nguyễn',
     greetingAccent: 'Mình làm công cụ cho dev và workflow AI',
     desc: 'Kỹ sư phần mềm ở Sài Gòn. Mình làm công cụ hỗ trợ kỹ thuật có AI, viết mấy tài liệu best practice mà dev thật sự đọc, và dựng môi trường làm việc gọn tới mức không phải nghĩ tới nó.',
     viewProjects: 'Xem dự án',
     contactMe: 'Liên hệ',
+    terminalAria: 'Bảng trạng thái hệ thống',
   },
   about: {
     eyebrow: 'Nền tảng',

@@ -52,7 +52,7 @@ function Terminal() {
         </div>
         <span className="terminal-title">derek@derekin.tech ~</span>
       </div>
-      <div className="terminal-body">
+      <div className="terminal-body" aria-label={t('hero.terminalAria')}>
         {terminalLines.map((line, i) => (
           <p key={i} className={'terminal-line' + (typed > i ? ' is-typed' : '')}>
             {line.parts.map((part, j) => (

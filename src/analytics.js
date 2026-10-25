@@ -22,5 +22,5 @@ export function initAnalytics() {
     window.dataLayer.push(arguments);
   };
   window.gtag('js', new Date());
-  window.gtag('config', id, { anonymize_ip: true });
+  window.gtag('config', id);
 }

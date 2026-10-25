@@ -13,7 +13,7 @@ export default function Header() {
           <span className="brand-dot"></span>
           derekin.tech
         </a>
-        <nav aria-label="Main navigation">
+        <nav aria-label={t('nav.aria')}>
           <ul className="nav-links">
             <li><a href="#about" className="nav-link">{t('nav.about')}</a></li>
             <li><a href="#projects" className="nav-link">{t('nav.projects')}</a></li>
@@ -23,10 +23,10 @@ export default function Header() {
           </ul>
         </nav>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <a href={langLink.href} className="lang-switch" lang={isVi ? 'en' : 'vi'} hreflang={isVi ? 'en' : 'vi'}>
+          <a href={langLink.href} className="lang-switch" lang={isVi ? 'en' : 'vi'} hrefLang={isVi ? 'en' : 'vi'}>
             {langLink.label}
           </a>
-          <button type="button" className="theme-toggle" onClick={toggle} aria-label={ariaLabel} title="Switch theme">
+          <button type="button" className="theme-toggle" onClick={toggle} aria-label={t('theme.toggle')} title={t('theme.toggle')}>
             <IconMoon />
             <IconSun />
           </button>

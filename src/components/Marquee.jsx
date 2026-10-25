@@ -18,7 +18,7 @@ function MarqueeItem({ item }) {
 
 export default function Marquee() {
   return (
-    <section className="marquee-section" aria-label="Technology stack">
+    <section className="marquee-section" aria-label={t('stack.aria')}>
       <div className="container">
         <p className="marquee-heading">{t('builtWith')}</p>
         <div className="marquee-wrapper">
