@@ -1,13 +1,15 @@
 # derekin.tech — React port
 
-Runnable **React 18 + Vite 5** port of the OpenDesign artifact `index.html`
+Runnable **React 18 + Vite 5** port of the original OpenDesign artifact
 (dark/light "Agentic" personal landing page). The original static HTML/CSS/JS
-is preserved untouched at the project root; this app reproduces its design 1:1.
+lives outside this repo alongside the OpenDesign project files and remains the
+source of truth for visuals and content — this app reproduces its design 1:1.
 
 ## Stack conflict note
 The source artifact is plain HTML + vanilla JS (no framework). The OpenDesign
-target stack was React, so this port was created in `react-app/` while the
-original `index.html` remains the source of truth for visuals and content.
+target stack was React, so the app lives in this repo (`react-app/` in the
+project workspace) with the original `index.html` preserved untouched in the
+parent OpenDesign project directory.
 
 ## What's preserved (port fidelity)
 - **100% of the CSS** — extracted verbatim from `index.html` into `src/index.css`
@@ -27,11 +29,10 @@ original `index.html` remains the source of truth for visuals and content.
 
 ## Structure
 ```
-react-app/
 ├── index.html              # head: fonts, meta (root div + /src/main.jsx)
-├── public/assets/          # copied from ../assets (screenshots, SVGs)
+├── public/assets/          # site imagery (screenshots, SVGs)
 ├── src/
-│   ├── index.css           # verbatim CSS from index.html
+│   ├── index.css           # verbatim CSS from the original index.html
 │   ├── main.jsx            # React root
 │   ├── App.jsx             # composition + ScrollProgress
 │   ├── hooks/index.js      # useReveal, useRafScroll, useParallax, useTheme, useGithubStars
@@ -41,7 +42,6 @@ react-app/
 
 ## Commands
 ```bash
-cd react-app
 npm install        # once
 npm run dev        # dev server (default http://localhost:5173/)
 npm run build      # production build → dist/
