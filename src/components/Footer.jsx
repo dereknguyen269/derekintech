@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Reveal from './Reveal.jsx';
+import { t } from '../i18n.js';
 
 export default function Footer() {
   const [year, setYear] = useState(2026);
@@ -9,10 +10,10 @@ export default function Footer() {
     <Reveal as="footer" variant="reveal-fade">
       <div className="container footer-row">
         <div className="footer-mono">
-          © <span>{year}</span> derekin.tech · All rights reserved.
+          © <span>{year}</span> derekin.tech · {t('footer.rights')}
         </div>
         <div className="footer-mono" style={{ color: 'var(--meta)' }}>
-          Designed with Agentic theme
+          {t('footer.designed')}
         </div>
       </div>
     </Reveal>

@@ -2,6 +2,7 @@ import Reveal from './Reveal.jsx';
 import { skills, openSource, apps } from './data.jsx';
 import { useGithubStars } from '../hooks/index.js';
 import { IconStar } from './icons.jsx';
+import { t, pick } from '../i18n.js';
 
 function StarBadgeLive({ repo, url, title }) {
   const { count, loaded } = useGithubStars(repo);
@@ -29,16 +30,16 @@ export function OpenSourceCard({ project, stagger }) {
           <StarBadgeLive repo={project.repo} url={project.url} title={project.title} />
         </div>
         <h3>{project.title}</h3>
-        <p className="project-desc">{project.desc}</p>
+        <p className="project-desc">{pick(project, 'desc')}</p>
         <div className="project-stack">
-          {project.stack.map((t) => (
-            <span key={t} className="tag">{t}</span>
+          {project.stack.map((tag) => (
+            <span key={tag} className="tag">{tag}</span>
           ))}
         </div>
       </div>
       <div className="project-links">
         <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm">
-          GitHub Repo
+          {t('viewOnGitHub')}
         </a>
       </div>
     </Reveal>
@@ -55,21 +56,21 @@ export function AppCard({ project, stagger }) {
         rel="noopener noreferrer"
         aria-label={`Visit ${project.title}`}
       >
-        <img className="project-thumb" src={project.thumb} alt={project.thumbAlt} width="280" />
+        <img className="project-thumb" src={project.thumb} alt={project.thumbAlt} width="280" loading="lazy" />
       </a>
       <div className="project-top">
         <span className="project-tag">{project.tag}</span>
         <h3>{project.title}</h3>
-        <p className="project-desc">{project.desc}</p>
+        <p className="project-desc">{pick(project, 'desc')}</p>
         <div className="project-stack">
-          {project.stack.map((t) => (
-            <span key={t} className="tag">{t}</span>
+          {project.stack.map((tag) => (
+            <span key={tag} className="tag">{tag}</span>
           ))}
         </div>
       </div>
       <div className="project-links">
         <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm">
-          {project.linkLabel}
+          {pick(project, 'linkLabel')}
         </a>
       </div>
     </Reveal>
@@ -81,23 +82,19 @@ export function AboutSection() {
     <section id="about">
       <div className="container">
         <Reveal as="div" className="section-head" variant="reveal-slide-up">
-          <span className="eyebrow">Background</span>
-          <h2>About &amp; Technical Stack</h2>
-          <p className="section-subtitle">Bridging the gap between robust system architecture and fluid product design.</p>
+          <span className="eyebrow">{t('about.eyebrow')}</span>
+          <h2>{t('about.title')}</h2>
+          <p className="section-subtitle">{t('about.subtitle')}</p>
         </Reveal>
         <div className="about-grid">
           <Reveal as="div" className="about-text" variant="reveal-slide-up" stagger="stagger-1">
-            <p>
-              I'm a software engineer passionate about craftsmanship, clean abstractions, and high-performance applications. With years of experience across the entire development lifecycle, I enjoy turning complex problem spaces into simple, dependable interfaces.
-            </p>
-            <p>
-              Currently exploring agentic workflows, autonomous systems, and modern frontend primitives that feel instant and tactile.
-            </p>
+            <p>{t('about.p1')}</p>
+            <p>{t('about.p2')}</p>
           </Reveal>
           <Reveal as="div" className="skills-panel" variant="reveal-slide-left" stagger="stagger-2" id="skills">
             {skills.map((group) => (
               <div className="skills-group" key={group.label}>
-                <span className="skills-label">{group.label}</span>
+                <span className="skills-label">{pick(group, 'label')}</span>
                 <div className="tag-cloud">
                   {group.tags.map((tag) => (
                     <span className="tag" key={tag}>{tag}</span>
@@ -117,9 +114,9 @@ export function ProjectsSection() {
     <section id="projects">
       <div className="container">
         <Reveal as="div" className="section-head" variant="reveal-slide-up">
-          <span className="eyebrow">Selected Work</span>
-          <h2>Featured Projects</h2>
-          <p className="section-subtitle">Real open-source repositories and development tooling from @dereknguyen269.</p>
+          <span className="eyebrow">{t('projects.eyebrow')}</span>
+          <h2>{t('projects.title')}</h2>
+          <p className="section-subtitle">{t('projects.subtitle')}</p>
         </Reveal>
         <div className="projects-grid">
           {openSource.map((project, i) => (
@@ -136,9 +133,9 @@ export function AppsSection() {
     <section id="apps">
       <div className="container">
         <Reveal as="div" className="section-head" variant="reveal-slide-up">
-          <span className="eyebrow">Apps &amp; Tools</span>
-          <h2>Things I've Built</h2>
-          <p className="section-subtitle">Web apps, browser extensions, and developer tools I ship and maintain.</p>
+          <span className="eyebrow">{t('apps.eyebrow')}</span>
+          <h2>{t('apps.title')}</h2>
+          <p className="section-subtitle">{t('apps.subtitle')}</p>
         </Reveal>
         <div className="projects-grid">
           {apps.map((project, i) => (

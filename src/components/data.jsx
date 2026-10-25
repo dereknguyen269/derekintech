@@ -9,18 +9,18 @@ import {
 
 /* ===== Tech stack marquee (order matches the original Set 1) ===== */
 export const stack = [
-  { key: 'typescript', label: 'TypeScript', pct: 95, level: 'Advanced / Production' },
-  { key: 'react', label: 'React', pct: 92, level: 'Advanced / Core Stack' },
-  { key: 'nextjs', label: 'Next.js', pct: 90, level: 'Advanced / App Router' },
-  { key: 'nodejs', label: 'Node.js', pct: 90, level: 'Advanced / Microservices' },
-  { key: 'go', label: 'Go', pct: 82, level: 'Proficient / CLIs & Systems' },
-  { key: 'python', label: 'Python', pct: 86, level: 'Proficient / AI & Automation' },
-  { key: 'postgresql', label: 'PostgreSQL', pct: 88, level: 'Advanced / Schema Design' },
-  { key: 'redis', label: 'Redis', pct: 85, level: 'Proficient / Caching & PubSub' },
-  { key: 'docker', label: 'Docker', pct: 84, level: 'Proficient / Containerization' },
-  { key: 'clickhouse', label: 'ClickHouse', pct: 78, level: 'Intermediate / Telemetry' },
-  { key: 'graphql', label: 'GraphQL', pct: 85, level: 'Proficient / Federation' },
-  { key: 'aws', label: 'AWS', pct: 80, level: 'Proficient / Cloud Infra' },
+  { key: 'typescript', label: 'TypeScript', pct: 95, level: 'Advanced / Production', levelVi: 'Thành thạo / dùng thật' },
+  { key: 'react', label: 'React', pct: 92, level: 'Advanced / Core Stack', levelVi: 'Thành thạo / stack chính' },
+  { key: 'nextjs', label: 'Next.js', pct: 90, level: 'Advanced / App Router', levelVi: 'Thành thạo / App Router' },
+  { key: 'nodejs', label: 'Node.js', pct: 90, level: 'Advanced / Microservices', levelVi: 'Thành thạo / microservices' },
+  { key: 'go', label: 'Go', pct: 82, level: 'Proficient / CLIs & Systems', levelVi: 'Khá / CLI & hệ thống' },
+  { key: 'python', label: 'Python', pct: 86, level: 'Proficient / AI & Automation', levelVi: 'Khá / AI & tự động hoá' },
+  { key: 'postgresql', label: 'PostgreSQL', pct: 88, level: 'Advanced / Schema Design', levelVi: 'Thành thạo / thiết kế schema' },
+  { key: 'redis', label: 'Redis', pct: 85, level: 'Proficient / Caching & PubSub', levelVi: 'Khá / cache & pubsub' },
+  { key: 'docker', label: 'Docker', pct: 84, level: 'Proficient / Containerization', levelVi: 'Khá / container' },
+  { key: 'clickhouse', label: 'ClickHouse', pct: 78, level: 'Intermediate / Telemetry', levelVi: 'Trung bình / telemetry' },
+  { key: 'graphql', label: 'GraphQL', pct: 85, level: 'Proficient / Federation', levelVi: 'Khá / federation' },
+  { key: 'aws', label: 'AWS', pct: 80, level: 'Proficient / Cloud Infra', levelVi: 'Khá / hạ tầng cloud' },
 ];
 
 export const marqueeItems = stack.map((s) => ({
@@ -33,14 +33,17 @@ export const marqueeItems = stack.map((s) => ({
 export const skills = [
   {
     label: 'Languages',
+    labelVi: 'Ngôn ngữ',
     tags: ['TypeScript', 'JavaScript', 'Go', 'Python', 'SQL'],
   },
   {
     label: 'Frontend & Design',
+    labelVi: 'Frontend & thiết kế',
     tags: ['React / Next.js', 'Tailwind CSS', 'HTML5 / Web APIs', 'Design Systems', 'UI/UX'],
   },
   {
     label: 'Backend & Infrastructure',
+    labelVi: 'Backend & hạ tầng',
     tags: ['Node.js', 'PostgreSQL', 'Redis', 'Docker', 'Cloud Architecture'],
   },
 ];
@@ -53,6 +56,7 @@ export const openSource = [
     repo: 'dereknguyen269/AI-Powered-Coding-Tools',
     url: 'https://github.com/dereknguyen269/AI-Powered-Coding-Tools',
     desc: 'Curated collection and practical workflows for modern AI coding assistants, autonomous agents, and LLM-driven engineering toolchains.',
+    descVi: 'Tổng hợp workflow thực tế cho trợ lý code AI, agent tự chạy và bộ công cụ kỹ thuật dùng LLM.',
     stack: ['AI / LLM', 'Workflows', 'Developer Tools'],
   },
   {
@@ -61,6 +65,7 @@ export const openSource = [
     repo: 'dereknguyen269/programing-best-practices',
     url: 'https://github.com/dereknguyen269/programing-best-practices',
     desc: 'Battle-tested software architecture principles, clean code conventions, and maintainable design patterns for production systems.',
+    descVi: 'Nguyên tắc kiến trúc, cách viết code sạch và những pattern đã chạy ổn ngoài production.',
     stack: ['Architecture', 'Clean Code', 'Best Practices'],
   },
   {
@@ -69,6 +74,7 @@ export const openSource = [
     repo: 'dereknguyen269/derek-power',
     url: 'https://github.com/dereknguyen269/derek-power',
     desc: 'Personal development configuration suite, dotfiles, shell tooling, and automated workflows designed for maximum daily velocity.',
+    descVi: 'Bộ cấu hình môi trường dev của mình: dotfiles, shell và mấy script tự động để làm việc nhanh hơn mỗi ngày.',
     stack: ['Dotfiles', 'Shell', 'Productivity'],
   },
   {
@@ -77,6 +83,7 @@ export const openSource = [
     repo: 'dereknguyen269/free-services',
     url: 'https://github.com/dereknguyen269/free-services',
     desc: 'Collection of useful free services and utilities — domain tools, converters, and quick helpers for developers.',
+    descVi: 'Danh sách dịch vụ miễn phí hữu ích: công cụ tên miền, chuyển đổi định dạng và tiện ích nhỏ cho dev.',
     stack: ['Tools', 'Utilities', 'Free'],
   },
 ];
@@ -90,7 +97,9 @@ export const apps = [
     thumbAlt: 'thetoolover.com - Developer Toolkit Interface',
     url: 'https://thetoolover.com',
     linkLabel: 'Visit site',
+    linkLabelVi: 'Truy cập',
     desc: 'A curated toolkit hub for developers — practical utilities, generators, and everyday productivity tools built to save time.',
+    descVi: 'Hub công cụ cho dev: tiện ích thực dụng, máy tạo nội dung và những thứ giúp đỡ tốn thời gian mỗi ngày.',
     stack: ['Web', 'Utilities', 'Productivity'],
   },
   {
@@ -100,7 +109,9 @@ export const apps = [
     thumbAlt: 'sheetback.top - Spreadsheet Utilities Interface',
     url: 'https://sheetback.top',
     linkLabel: 'Visit site',
+    linkLabelVi: 'Truy cập',
     desc: 'Lightweight spreadsheet utilities and data helpers — fast, private, and browser-native workflows for working with tabular data.',
+    descVi: 'Tiện ích bảng tính nhẹ, xử lý dữ liệu ngay trên trình duyệt, không gửi file lên server.',
     stack: ['Spreadsheets', 'Data', 'Browser'],
   },
   {
@@ -111,6 +122,7 @@ export const apps = [
     url: 'https://chromewebstore.google.com/detail/fphbhjcdilnnjgefioifeecgdpgapmmp',
     linkLabel: 'Chrome Web Store',
     desc: 'Select Markdown on any page for an instant floating preview, or convert web HTML to clean Markdown. Features a split-view editor with Vim mode, 22 themes, and PDF/HTML export — 100% offline.',
+    descVi: 'Bôi đen Markdown ở bất kỳ trang nào là hiện preview nổi, hoặc chuyển HTML thành Markdown sạch. Có editor split-view, Vim mode, 22 theme, xuất PDF/HTML — chạy hoàn toàn offline.',
     stack: ['Markdown', 'HTML Converter', 'Side Panel', 'Offline First'],
   },
   {
@@ -121,6 +133,7 @@ export const apps = [
     url: 'https://chromewebstore.google.com/detail/gedkelfdgmnhjgkjhkbcndjlpoafpkcp',
     linkLabel: 'Chrome Web Store',
     desc: 'Boost tab audio up to 20x with output meter and live visualizer. Includes Focus mode, YouTube declutter, Pomodoro timer, per-site memory, and 14 themes — stored locally with zero tracking.',
+    descVi: 'Tăng âm lượng tab lên tới 20 lần, kèm đồng hồ đo và visualizer. Có Focus mode, dọn YouTube, Pomodoro, nhớ cài đặt theo từng site, 14 theme — lưu local, không tracking.',
     stack: ['Audio Boost', 'Focus Mode', 'Pomodoro', 'Privacy'],
   },
 ];

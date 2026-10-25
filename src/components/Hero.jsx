@@ -3,6 +3,7 @@ import Reveal from './Reveal.jsx';
 import { useReveal, useParallax } from '../hooks/index.js';
 import { terminalLines } from './data.jsx';
 import { IconArrowRight } from './icons.jsx';
+import { t } from '../i18n.js';
 
 const prefersReduced = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -25,7 +26,6 @@ function useTypedLines(enabled, total) {
 }
 
 function Terminal() {
-  // Card reveal (slide-in) + typing trigger used the same IO threshold as the original.
   const [cardRef, cardVisible] = useReveal({ threshold: 0.3 });
   const parallaxRef = useParallax(0.06);
   const typed = useTypedLines(cardVisible, terminalLines.length);
@@ -82,28 +82,27 @@ export default function Hero() {
                 height="48"
               />
               <div className="hero-author-meta">
-                <span className="hero-author-name">Derek Nguyen</span>
+                <span className="hero-author-name">{t('hero.name')}</span>
                 <span className="hero-author-handle">@dereknguyen269 · Ho Chi Minh City</span>
               </div>
             </div>
             <div className="eyebrow">
               <span className="status-pulse"></span>
-              Available for new projects
+              {t('hero.eyebrow')}
             </div>
           </Reveal>
           <Reveal as="h1" variant="reveal-slide-up" stagger="stagger-2">
-            Hi, I'm <span className="gradient-text">Derek Nguyen</span>.<br />
-            I build developer tools &amp; AI workflows.
+            {t('hero.greeting')} <span className="gradient-text">{t('hero.greetingAccent')}</span>.
           </Reveal>
           <Reveal as="p" className="hero-desc" variant="reveal-slide-up" stagger="stagger-3">
-            Software engineer based in Ho Chi Minh City, Vietnam. Creator of AI-assisted engineering tools, programming best-practices guides, and structured dev environments.
+            {t('hero.desc')}
           </Reveal>
           <Reveal as="div" className="hero-actions" variant="reveal-slide-up" stagger="stagger-4">
             <a href="#projects" className="btn btn-primary">
-              View projects
+              {t('hero.viewProjects')}
               <IconArrowRight />
             </a>
-            <a href="#contact" className="btn btn-secondary">Contact me</a>
+            <a href="#contact" className="btn btn-secondary">{t('hero.contactMe')}</a>
           </Reveal>
         </div>
 
