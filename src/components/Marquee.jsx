@@ -23,11 +23,11 @@ export default function Marquee() {
         <p className="marquee-heading">{t('builtWith')}</p>
         <div className="marquee-wrapper">
           <div className="marquee-track">
-            {marqueeItems.map((item, i) => (
+            {marqueeItems.map((item) => (
               <MarqueeItem key={'set1-' + item.key} item={item} />
             ))}
             {/* Set 2 (duplicate for seamless loop, exactly like the original) */}
-            {marqueeItems.map((item, i) => (
+            {marqueeItems.map((item) => (
               <MarqueeItem key={'set2-' + item.key} item={item} />
             ))}
           </div>

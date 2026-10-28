@@ -75,9 +75,12 @@ export default function Contact() {
             noValidate
           >
             <input type="hidden" name="access_key" value="e3208fba-b8e5-4cba-a504-7d586238621c" />
-            <input type="text" name="name" placeholder={t('contact.nameLabel')} className="form-input" required />
-            <input type="email" name="email" placeholder={t('contact.emailLabel')} className="form-input" required />
-            <textarea name="message" placeholder={t('contact.messageLabel')} className="form-textarea" required></textarea>
+            <label className="sr-only" htmlFor="contact-name">{t('contact.nameLabel')}</label>
+            <input id="contact-name" type="text" name="name" placeholder={t('contact.nameLabel')} autoComplete="name" className="form-input" required />
+            <label className="sr-only" htmlFor="contact-email">{t('contact.emailLabel')}</label>
+            <input id="contact-email" type="email" name="email" placeholder={t('contact.emailLabel')} autoComplete="email" className="form-input" required />
+            <label className="sr-only" htmlFor="contact-message">{t('contact.messageLabel')}</label>
+            <textarea id="contact-message" name="message" placeholder={t('contact.messageLabel')} className="form-textarea" required></textarea>
             <button type="submit" className="btn btn-primary" disabled={sending} aria-disabled={sending || undefined}>
               <span className="btn-text">{sending ? t('contact.sending') : t('contact.send')}</span>
               {sending && (

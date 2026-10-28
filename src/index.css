@@ -250,6 +250,9 @@
       :root[data-theme="light"] .theme-toggle .icon-sun { display: block; }
       :root[data-theme="light"] .theme-toggle .icon-moon { display: none; }
 
+      .menu-toggle,
+      .mobile-navigation { display: none; }
+
       /* Language switch */
       .lang-switch {
         display: inline-flex;
@@ -737,7 +740,29 @@
         .contact-box { grid-template-columns: 1fr; gap: var(--space-6); }
       }
       @media (max-width: 639px) {
-        .nav-links { display: none; }
+        .nav-row > nav { display: none; }
+        .menu-toggle {
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          width: 40px;
+          height: 40px;
+          padding: 0;
+          border: 1px solid var(--border);
+          border-radius: var(--radius-md);
+          background: var(--surface);
+          color: var(--fg-2);
+          cursor: pointer;
+        }
+        .menu-toggle span { display: block; width: 16px; height: 1px; background: currentColor; }
+        .menu-toggle:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+        .mobile-navigation.is-open { display: block; border-top: 1px solid var(--border-soft); }
+        .mobile-navigation-inner { display: grid; gap: var(--space-2); padding-block: var(--space-3) var(--space-4); }
+        .mobile-navigation .nav-link,
+        .mobile-navigation .btn { min-height: 44px; padding: 10px 12px; }
+        .mobile-navigation .nav-link { display: flex; align-items: center; }
         .hero-actions { flex-direction: column; width: 100%; }
         .hero-actions .btn { width: 100%; }
         .projects-grid {
@@ -841,7 +866,7 @@
         border-top: 1px solid var(--border-soft);
         border-bottom: 1px solid var(--border-soft);
         background: color-mix(in oklab, var(--surface), transparent 60%);
-        overflow: visible;
+        overflow: hidden;
         position: relative;
         z-index: 10;
       }
@@ -857,7 +882,7 @@
       .marquee-wrapper {
         position: relative;
         width: 100%;
-        overflow: visible;
+        overflow: hidden;
         mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
       }
