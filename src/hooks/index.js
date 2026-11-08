@@ -1,4 +1,8 @@
+import { flushSync } from 'react-dom';
 import { useEffect, useRef, useState, useCallback } from 'react';
+
+const NATIVE_SCROLL =
+  typeof CSS !== 'undefined' && CSS.supports('animation-timeline: view()');
 
 const prefersReduced = () =>
   typeof window !== 'undefined' &&
@@ -10,10 +14,10 @@ const prefersReduced = () =>
  */
 export function useReveal({ threshold = 0.12, rootMargin = '0px 0px -60px 0px' } = {}) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(prefersReduced());
+  const [visible, setVisible] = useState(() => prefersReduced() || NATIVE_SCROLL);
 
   useEffect(() => {
-    if (prefersReduced()) {
+    if (prefersReduced() || NATIVE_SCROLL) {
       setVisible(true);
       return;
     }
@@ -95,12 +99,17 @@ export function useTheme() {
   }, []);
 
   const toggle = useCallback(() => {
-    setTheme((current) => {
-      const next = current === 'light' ? 'dark' : 'light';
+    // Derived from the DOM, not from a counter: StrictMode's double-invoke
+    // cannot flip the value twice. Side effects stay OUT of the updater.
+    const next =
+      document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    const apply = () => {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      return next;
-    });
+      setTheme(next);
+    };
+    if (prefersReduced() || !document.startViewTransition) return apply();
+    document.startViewTransition(() => flushSync(apply));
   }, []);
 
   return {

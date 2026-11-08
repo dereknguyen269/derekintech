@@ -1022,3 +1022,74 @@
           -webkit-mask-image: none;
         }
       }
+
+/* ===== Native scroll-driven reveals (fallback: IntersectionObserver) ===== */
+@supports (animation-timeline: view()) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: reveal-in linear both;
+    animation-duration: auto; /* must follow the shorthand: it resets duration to 0s */
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+  .stagger-2 { animation-range: entry 6% entry 86%; }
+  .stagger-3 { animation-range: entry 12% entry 92%; }
+  .stagger-4 { animation-range: entry 18% entry 98%; }
+  .stagger-5 { animation-range: entry 24% entry 100%; }
+  .stagger-6 { animation-range: entry 30% entry 100%; }
+  @keyframes reveal-in {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* ===== Hero spotlight (pointer-fine only) ===== */
+.hero { position: relative; }
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), var(--glow-color), transparent 65%);
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 400ms var(--ease-standard);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero:hover::after { opacity: .45; }
+}
+
+/* ===== View transitions (cross-document nav + theme toggle) ===== */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vt-out 200ms ease both; }
+::view-transition-new(root) { animation: vt-in 250ms ease both; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; } }
+
+
+/* ===== Accessibility ===== */
+:focus-visible {
+  outline: 2px solid var(--gold, #d9b779);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

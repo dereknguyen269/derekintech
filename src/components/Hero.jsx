@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Reveal from './Reveal.jsx';
 import { useReveal, useParallax } from '../hooks/index.js';
 import { terminalLines } from './data.jsx';
@@ -68,8 +68,38 @@ function Terminal() {
 }
 
 export default function Hero() {
+  const spotRef = useRef(null);
+
+  useEffect(() => {
+    const el = spotRef.current;
+    if (
+      !el ||
+      !matchMedia('(hover: hover) and (pointer: fine)').matches ||
+      matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+      return;
+
+    let r = el.getBoundingClientRect();
+    const measure = () => { r = el.getBoundingClientRect(); };
+    const onMove = (e) => {
+      el.style.setProperty('--mx', e.clientX - r.left + 'px');
+      el.style.setProperty('--my', e.clientY - r.top + 'px');
+    };
+
+    el.addEventListener('pointerenter', measure);
+    el.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('resize', measure);
+    window.addEventListener('scroll', measure, { passive: true });
+    return () => {
+      el.removeEventListener('pointerenter', measure);
+      el.removeEventListener('pointermove', onMove);
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', measure);
+    };
+  }, []);
+
   return (
-    <section className="hero" style={{ borderTop: 'none' }}>
+    <section ref={spotRef} className="hero" style={{ borderTop: 'none' }}>
       <div className="container hero-grid">
         <div>
           <Reveal as="div" variant="reveal-fade" stagger="stagger-1">
