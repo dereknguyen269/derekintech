@@ -5,6 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    allowedHosts: ['.trycloudflare.com'],
+  },
+  preview: {
+    allowedHosts: ['.trycloudflare.com'],
   },
   build: {
     rollupOptions: {
