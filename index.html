@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html data-theme="light" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 
     <!-- Primary SEO -->
     <title>Derek Nguyen | Full-Stack Engineer &amp; AI Builder</title>
@@ -11,8 +13,17 @@
     <meta name="author" content="Derek Nguyen" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="googlebot" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#0b1020" />
+    <meta name="theme-color" content="#f7f6f1" />
     <meta name="color-scheme" content="dark light" />
+    <script>
+      // Apply saved appearance before the first paint on either language route.
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch {}
+    </script>
     <link rel="canonical" href="https://derekin.tech/" />
 
     <!-- Open Graph / social preview -->
