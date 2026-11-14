@@ -1,53 +1,34 @@
-# derekin.tech — React port
+# derekin.tech
 
-Runnable **React 18 + Vite 5** port of the original OpenDesign artifact
-(dark/light "Agentic" personal landing page). The original static HTML/CSS/JS
-lives outside this repo alongside the OpenDesign project files and remains the
-source of truth for visuals and content — this app reproduces its design 1:1.
+Derek Nguyen’s personal portfolio, built with React 18 and Vite 5. The editorial redesign uses warm ivory, charcoal, orange accents, large project previews, and a responsive builder’s workspace illustration.
 
-## Stack conflict note
-The source artifact is plain HTML + vanilla JS (no framework). The OpenDesign
-target stack was React, so the app lives in this repo (`react-app/` in the
-project workspace) with the original `index.html` preserved untouched in the
-parent OpenDesign project directory.
+## Development
 
-## What's preserved (port fidelity)
-- **100% of the CSS** — extracted verbatim from `index.html` into `src/index.css`
-  (layout primitives, theme variables, marquee, tooltips, reveal system).
-- **All markup structure & classes** — `.reveal`/variant classes contract kept via
-  `src/components/Reveal.jsx` + `useReveal` hook.
-- **All vanilla behaviors, ported to hooks/components:**
-  - Scroll progress bar (`ScrollProgress` in `src/App.jsx`)
-  - IntersectionObserver scroll reveals with staggers
-  - Terminal card typing animation (`Hero.jsx` → `useTypedLines`)
-  - Hero terminal parallax (`useParallax`)
-  - Theme toggle with `localStorage` + `prefers-color-scheme` (`useTheme`)
-  - Infinite stack marquee with proficiency tooltips (CSS-driven, hover-pause)
-  - Live GitHub star counters: fetch + sessionStorage cache (30 min) + count-up
-    animation (`useGithubStars`)
-  - Web3Forms AJAX contact form with spinner + success/error status (`Contact.jsx`)
+```sh
+npm ci
+npm run dev
+npm run check
+npm run build
+npm run preview
+```
+
+`npm run build` checks English/Vietnamese translation parity and builds both HTML entries into `dist/`. Deploy `dist/` with the existing static hosting configuration.
+
+## Features
+
+- English at `/` and Vietnamese at `/vi/`, with separate SEO metadata and reciprocal language links.
+- App showcase with Web app / Extension filters, followed by open-source work, background, and contact.
+- Persistent light/dark theme, mobile navigation with Escape dismissal, keyboard focus styles, and reduced-motion support.
+- Email copying and the existing Web3Forms contact integration, including validation, sending, success, and error states.
+- Existing inbound anchors `#apps`, `#projects`, and `#skills` continue to work.
+- Optional analytics through `VITE_GA_MEASUREMENT_ID`, documented in `.env.example`.
 
 ## Structure
-```
-├── index.html              # head: fonts, meta (root div + /src/main.jsx)
-├── public/assets/          # site imagery (screenshots, SVGs)
-├── src/
-│   ├── index.css           # verbatim CSS from the original index.html
-│   ├── main.jsx            # React root
-│   ├── App.jsx             # composition + ScrollProgress
-│   ├── hooks/index.js      # useReveal, useRafScroll, useParallax, useTheme, useGithubStars
-│   └── components/         # Header, Hero, Marquee, Sections, Contact, Footer,
-│                           #   Reveal (shared), icons.jsx, data.jsx (content)
-```
 
-## Commands
-```bash
-npm install        # once
-npm run dev        # dev server (default http://localhost:5173/)
-npm run build      # production build → dist/
-npm run preview    # serve the production build
-```
+- `src/components/` — navigation, hero, toolkit, app showcase, open source, about, contact, footer.
+- `src/i18n.js` — English and Vietnamese copy, selected by the current path.
+- `src/hooks/index.js` — theme preference.
+- `src/index.css` — visual tokens and responsive styles.
+- `public/assets/` — project images, portrait, favicon, and self-hosted Manrope fonts.
 
-Note: on this machine Vite binds IPv6 (`http://[::1]:5173/`) — if
-`localhost` resolves to IPv4 and another app owns that port, use the
-bracketed IPv6 URL `http://[::1]:5173/`.
+Manrope is licensed under SIL OFL; see `public/assets/OFL-Manrope.txt`. Georgia uses the visitor’s system font. MarkLens and Sound Pilot showcase compositions are illustrations of their features rather than live screenshots. Thetoolover and Sheetback use existing product screenshots.

@@ -1,42 +1,45 @@
-import { useCallback, useRef } from 'react';
-import Header from './components/Header.jsx';
-import Hero from './components/Hero.jsx';
-import Marquee from './components/Marquee.jsx';
-import { AboutSection, ProjectsSection, AppsSection } from './components/Sections.jsx';
-import Contact from './components/Contact.jsx';
-import Footer from './components/Footer.jsx';
-import { useRafScroll } from './hooks/index.js';
-
-function ScrollProgress() {
-  const barRef = useRef(null);
-
-  const onScroll = useCallback(() => {
-    const bar = barRef.current;
-    if (!bar) return;
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const docHeight =
-      document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    if (docHeight > 0) {
-      bar.style.width = ((scrollTop / docHeight) * 100) + '%';
-    }
-  }, []);
-  useRafScroll(onScroll);
-
-  return <div ref={barRef} className="scroll-progress" aria-hidden="true"></div>;
-}
+import { useEffect } from "react";
+import Header from "./components/Header.jsx";
+import Hero from "./components/Hero.jsx";
+import Toolkit from "./components/Toolkit.jsx";
+import Work from "./components/Work.jsx";
+import OpenSource from "./components/OpenSource.jsx";
+import About from "./components/About.jsx";
+import Contact from "./components/Contact.jsx";
+import Footer from "./components/Footer.jsx";
 
 export default function App() {
+  useEffect(() => {
+    const links = document.querySelectorAll(".desktop-nav a");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting)
+            links.forEach((link) => {
+              const active = link.hash === `#${entry.target.id}`;
+              link.classList.toggle("current", active);
+              if (active) link.setAttribute("aria-current", "location");
+              else link.removeAttribute("aria-current");
+            });
+        });
+      },
+      { rootMargin: "-15% 0px -60% 0px" },
+    );
+    ["work", "opensource", "about", "contact"].forEach((id) =>
+      observer.observe(document.getElementById(id)),
+    );
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <ScrollProgress />
-      <div className="page-glow" aria-hidden="true"></div>
       <Header />
-      <main id="top">
+      <main id="main">
         <Hero />
-        <Marquee />
-        <AboutSection />
-        <ProjectsSection />
-        <AppsSection />
+        <Toolkit />
+        <Work />
+        <OpenSource />
+        <About />
         <Contact />
       </main>
       <Footer />
